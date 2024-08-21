@@ -1,23 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+
+import Admin_rdv from "./Admin_rdv/Admin_rdv.js";
+import Login from "./Login/Login.js";
+import "./structure.css";
+import "./structure2.css";
+import './globals.css';
+import "./rdv.css";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+<Router>
+    
+    <Routes>
+
+
+      <Route exact path = '/' element={<Login />} />
+
+      <Route exact path = '/admin_rdv' element={<Admin_rdv />} /> 
+
+
+      
+    </Routes>
+
+</Router>
+      
     </div>
   );
 }

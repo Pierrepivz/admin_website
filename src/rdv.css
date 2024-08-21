@@ -1,0 +1,127 @@
+.hourlistselection{
+
+    display: flex;
+    flex-wrap: wrap;
+    width: 350px;
+    background: rgb(255, 245, 245);
+    justify-content: center;
+    
+}
+.rdvlist{
+    
+    width: 800px;
+    
+    justify-content: space-around;
+    
+    
+}
+.rdvlist content{
+    
+    font-size: 15px;
+    
+    
+    
+}
+.booked_rdv{
+    padding: 30px;
+    background: #d1f1fd;
+}
+
+.manage_dispo{
+    height: 20px;
+    
+    background: white;
+}
+.offhour{
+    color: black;
+    background-color: #d6fce1;
+
+}
+.unavailable{
+    color: black;
+    background-color: #c2c2c2;
+    pointer-events: none;
+    
+
+}
+
+
+.bouton{
+
+    background-color: #2873C9;
+    margin-top: -20px;
+    box-sizing: border-box;
+    color: white;
+    border-style: solid;
+    border-color: #c1eaf8;
+    border-width: 5px;
+    padding: 15px 32px;
+    text-decoration: none;
+    font-weight: 700;
+    font-family: 'Montserrat';
+    font-size: 16px;
+    border-radius: 9px;
+    
+    
+    
+   }
+   .bouton_2{
+
+    background-color: #2873C9;
+    margin-top: -20px;
+    box-sizing: border-box;
+    color: white;
+    border-style: solid;
+    border-color: #c1eaf8;
+    border-width: 5px;
+    padding: 8px;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 600;
+    font-family: 'Montserrat';
+    font-size: 12px;
+    border-radius: 9px;
+    
+    
+    
+   }
+   .rdv_management{
+       border-color: #2873C9;
+       border-style: solid;
+       padding: 50px;
+
+   }
+   .rdv_management .row{
+       background: rgb(255, 250, 222);
+       padding: 10px;
+       border-radius: 5px;
+   }
+
+#bouton_off{
+    
+    
+    
+        background-color: #b3b3b3;
+        pointer-events: none;
+    
+    
+}
+
+.rdv_management * {
+    margin-bottom: 10px;
+
+}
+.rdv_management .row * {
+    margin-right: 10px;
+
+}
+.rdv_management .manage_dispo * {
+    margin-right: 10px;
+
+}
+.selected{
+    border-style: solid;
+    border-color: #2873C9;
+    border-width: 4px;
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.308);
+}

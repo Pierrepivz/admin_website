@@ -1,0 +1,20 @@
+.update_row{
+
+   width: 700px;
+   display: flex;
+   justify-content: space-between;
+   max-height: 40px;
+
+}
+.bouton_blog{
+    height: 30px;
+    background-color: #3e8ce6;
+    color: white;
+    font-family: "montserrat";
+    border-style: solid;
+    border-width: 3px;
+    border-color: white;
+    pointer-events: painted;
+    width: 160px;
+}
+

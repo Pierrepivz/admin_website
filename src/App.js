@@ -9,6 +9,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Admin_blog from "./Admin_blog/Admin_blog.js";
 import Client_blog from "./Client_blog/Client_blog.js";
 import Nav from "./Nav/Nav.js";
+import Create_Blog from "./Create_blog/Create_blog.js";
+import Blog from "./Client_blog/View_blog.js";
 
 
 function App() {
@@ -27,6 +29,10 @@ function App() {
       <Route exact path = '/admin_blog' element={<><Nav /><Admin_blog /></>} />
 
       <Route exact path = '/client_blog' element={<><Nav /><Client_blog /></>} />
+
+      <Route path = '/create_blog' element={<><Nav /><Create_Blog /></>} />
+
+      <Route path = '/blog' element={<><Nav /><Blog /></>} />
 
 
       

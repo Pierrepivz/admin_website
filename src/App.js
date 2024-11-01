@@ -11,7 +11,7 @@ import Client_blog from "./Client_blog/Client_blog.js";
 import Nav from "./Nav/Nav.js";
 import Create_Blog from "./Create_blog/Create_blog.js";
 import Blog from "./Client_blog/View_blog.js";
-
+import Page_edit from "./Landing_page_edit/Page_edit.js";
 
 function App() {
   return (
@@ -23,6 +23,9 @@ function App() {
 
 
       <Route exact path = '/' element={<Login />} />
+
+      <Route exact path = '/landing_page' element={<Page_edit />} />
+
 
       <Route exact path = '/admin_rdv' element={<><Nav /><Admin_rdv /></>} />
 

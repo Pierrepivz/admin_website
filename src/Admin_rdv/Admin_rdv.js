@@ -5,8 +5,6 @@ import axios from 'axios';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import '../calendar.css';
-import '../globals.css';
-import "../rdv.css";
 import moment  from 'moment';
 
 

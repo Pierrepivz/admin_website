@@ -29,6 +29,20 @@ function Admin_blog() {
       
     
     }, []); 
+
+
+    const keyword = (article) => {
+
+      var tab = article.split(" ");
+      var keywords = tab.filter( mot =>  mot.length > 3 );
+      keywords.length = 4;
+      const linkurl = keywords.toString();
+
+
+    return linkurl;
+
+
+    }
   
   var verif = (Listset.map(value => value.id));
   var last = verif.length - 1;
@@ -67,6 +81,7 @@ function Admin_blog() {
 
 
   const deletefunction = (id) => {
+    console.log(id);
     if(window.confirm("voulez vous vraiment supprimer cet article ? tout son contenu sera également supprimé")){
     axios.delete(`https://server-test-3emq.onrender.com/api/deletearticle/${id}`);
     window.location.reload();}
@@ -196,8 +211,8 @@ function Admin_blog() {
         <div class="home_article column_start"> <div class="article_photo" ><img src={value.image}></img></div> 
         
 <div class="column">
-        <button class="bouton_blog" onClick={() => {deletefunction(value.id)}}>Delete</button>
-  <Link to={`/Create_blog?id=${value.id}`}>     
+    <button class="bouton_blog" onClick={() => {deletefunction(value.id)}}>Delete</button>
+  <Link to={`/Create_blog?id=${value.id}&${keyword(value.article_name)}`}>     
 
         <button class="bouton_blog" >edit</button>
         </Link> 

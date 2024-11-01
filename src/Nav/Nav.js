@@ -49,6 +49,16 @@ function Nav() {
 
        </Link>
         </ul>
+
+        <ul>
+        <Link to='../Landing_page' >
+
+        <a onClick={() => window.scrollTo(0,10)}>Landing page</a>
+
+        
+
+       </Link>
+        </ul>
         
         
 

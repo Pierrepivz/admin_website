@@ -23,6 +23,7 @@ function Create_Blog(props) {
   const queryParameters = new URLSearchParams(window.location.search);
   const id = queryParameters.get("id");
   const [Article,setArticle] = useState([]);
+  const [url,setUrl] = useState(" ");
   
   
   useEffect (() => {
@@ -51,6 +52,32 @@ function Create_Blog(props) {
  const initimage = Article.map(value => value.image);
  const initmetatitle = Article.map(value => value.meta_title);
  const initmetadescription = Article.map(value => value.meta_description);
+ const initurl = Article.map(value => value.url);
+
+
+ function updateurl(){
+
+   if(window.confirm("voulez vous enregistrer les modifications de l'url ?")){
+    axios.put('https://server-test-3emq.onrender.com/api/updatearticleurl', {
+  
+  id: id,
+  url: url
+
+  
+
+  
+  
+  
+})
+.then(function (response) {
+  console.log(response);
+})
+.catch(function (error) {
+  console.log(error);
+});
+
+   }
+ }
  
 
  
@@ -182,7 +209,7 @@ function Create_Blog(props) {
 
 
   
-/* article content tinymce article g  https://server-test-3emq.onrender.com/api/updatearticlecontent*/
+
 
   function updatearticle(){
 
@@ -230,6 +257,11 @@ function Create_Blog(props) {
                              </div>
 
                              <div class="column_items_center">
+
+                             <div class="update_row">
+                             <input type="text" class="textarea" id="input" placeholder = "mots clés pour l'url" onChange={(e) => setUrl(e.target.value)} defaultValue={initurl}   ></input>
+                             <button class="bouton_blog" onClick={() => updateurl()}>Update url</button>
+                             </div>
 
                               <div class="update_row">
                              <input type="text" class="textarea" id="input" placeholder = "lien de l'image" onChange={(e) => setImage(e.target.value)} defaultValue={initimage}   ></input>

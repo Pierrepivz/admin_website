@@ -8,19 +8,7 @@ import { Link } from "react-router-dom";
 
 function Home_Blog() {
 
-    const keyword = (article) => {
-
-      var tab = article.split(" ");
-      var keywords = tab.filter( mot =>  mot.length > 3 );
-      keywords.length = 4;
-      const linkurl = keywords.toString();
-
-
-    return linkurl;
-
-
-    }
-
+    
   
     const [article_name,setArticlename] = useState('');
     const [filter,setFilter] = useState('');
@@ -176,20 +164,7 @@ console.log(error);
 
   
 
-    /*const [filter,Setfilter] = useState('');
-
-      function article_select(e){
-
-
-      
-
-      }*/
-     /* function filter_select(e){
-
-      Setfilter(e.value);
-
-
-    }*/
+    
     return (
       <div className="Page Blog">
 
@@ -268,7 +243,7 @@ console.log(error);
     <div class="column_start">
         
         
-        <Link to={`/blog?id=${value.id}?${keyword(value.article_name)}`}>
+        <Link to={`/blog?id=${value.id}&${value.url}`}>
         
         
         

@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 function Admin_blog() {
     
-  
+    
     const [article_name,setArticlename] = useState('');
     const [filter,setFilter] = useState('');
     const [input,setInput] = useState('');
@@ -31,22 +31,11 @@ function Admin_blog() {
     }, []); 
 
 
-    const keyword = (article) => {
-
-      var tab = article.split(" ");
-      var keywords = tab.filter( mot =>  mot.length > 3 );
-      keywords.length = 4;
-      const linkurl = keywords.toString();
-
-
-    return linkurl;
-
-
-    }
+   
   
   var verif = (Listset.map(value => value.id));
   var last = verif.length - 1;
-  var id = verif[last] + 1;
+  
   
 
   const submit = () => {
@@ -57,7 +46,6 @@ function Admin_blog() {
   axios.post('https://server-test-3emq.onrender.com/api/insertblog', {
     
     article_name: title,
-    filters: articlefilter,
     image: image
 
   })
@@ -81,10 +69,21 @@ function Admin_blog() {
 
 
   const deletefunction = (id) => {
-    console.log(id);
+    
+    
     if(window.confirm("voulez vous vraiment supprimer cet article ? tout son contenu sera également supprimé")){
-    axios.delete(`https://server-test-3emq.onrender.com/api/deletearticle/${id}`);
-    window.location.reload();}
+    
+    
+    
+      axios.delete(`https://server-test-3emq.onrender.com/api/deletearticle/${id}`).then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      
+      window.location.reload();
+    }
 
   }
 
@@ -138,7 +137,7 @@ function Admin_blog() {
                               
                               <div class="column_items_center">
                               
-                              <content class="note"> Création, suppression et édition des articles</content>
+    <content class="note"> Création, suppression et édition des articles </content>
     
                               <div class="column_items_center">
 
@@ -150,13 +149,7 @@ function Admin_blog() {
       <br/><br/>
       <input type="text" class="textarea" class="research"  placeholder = "lien de l'image" onChange={(e) => setImage(e.target.value)} ></input>
       <br/><br/>
-      <select class="filtres"  class="research" onChange={e => setArticleFilter(e.target.value)}>
-                    <option></option>
-                    <option value="Divers">Divers</option>
-                    <option value="Entretiens" >Entretiens</option>
-                    <option value="Coaching">Coaching</option>
-
-                    </select>
+      
                     <br/><br/>
   
         <button class="bouton_blog" onClick={submit}>Ajouter un article</button>
@@ -211,8 +204,8 @@ function Admin_blog() {
         <div class="home_article column_start"> <div class="article_photo" ><img src={value.image}></img></div> 
         
 <div class="column">
-    <button class="bouton_blog" onClick={() => {deletefunction(value.id)}}>Delete</button>
-  <Link to={`/Create_blog?id=${value.id}&${keyword(value.article_name)}`}>     
+    <button class="bouton_blog" onClick={(e) => deletefunction(value.id)}>Delete</button>
+  <Link to={`/Create_blog?id=${value.id}`}>     
 
         <button class="bouton_blog" >edit</button>
         </Link> 

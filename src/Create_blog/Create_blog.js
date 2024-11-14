@@ -10,20 +10,23 @@ function Create_Blog(props) {
 
 
   
-  const [meta_title,setMetatitle] = useState('');
-  const [meta_description,setMetadescription] = useState('');
-  const [value,setValue] = useState('');
-  const editorRef = useRef();
-  const [articlefilter,setArticleFilter] = useState('');
-  const [image,setImage] = useState('');
-  const [title,setTitle] = useState('');
+  
 
    
   
   const queryParameters = new URLSearchParams(window.location.search);
   const id = queryParameters.get("id");
   const [Article,setArticle] = useState([]);
-  const [url,setUrl] = useState(" ");
+
+  const [meta_title,setMetatitle] = useState("");
+  const [meta_description,setMetadescription] = useState("");
+  const [value,setValue] = useState("");
+  const editorRef = useRef();
+  const [articlefilter,setArticleFilter] = useState("");
+  const [image,setImage] = useState("");
+  const [title,setTitle] = useState("");
+  const [url,setUrl] = useState("");
+  
   
   
   useEffect (() => {
@@ -32,6 +35,13 @@ function Create_Blog(props) {
     .then((response) =>  { 
       
       setArticle(response.data);
+      
+
+      
+
+ 
+
+
       
     
     }
@@ -43,16 +53,23 @@ function Create_Blog(props) {
     
     
     }, []); 
+
+    const initialcontent = Article.map(value => value.content);
+    const inittitle = Article.map(value => value.article_name);
+    const initfilter = Article.map(value => value.filters);
+    const initimage = Article.map(value => value.image);
+    const initmetatitle = Article.map(value => value.meta_title);
+    const initmetadescription = Article.map(value => value.meta_description);
+    const initurl = Article.map(value => value.url);
+    
+    
   
   
   
- const initialcontent = Article.map(value => value.content);
- const inittitle = Article.map(value => value.article_name);
- const initfilter = Article.map(value => value.filters);
- const initimage = Article.map(value => value.image);
- const initmetatitle = Article.map(value => value.meta_title);
- const initmetadescription = Article.map(value => value.meta_description);
- const initurl = Article.map(value => value.url);
+  
+ 
+
+ 
 
 
  function updateurl(){
@@ -213,15 +230,37 @@ function Create_Blog(props) {
 
   function updatearticle(){
 
-    if(window.confirm("voulez vous enregistrer les modifications ?")){
+    var article_title = "";
+    var article_value = "";
+    var article_filter = "";
+    var article_image = "";
+    var article_meta_title = "";
+    var article_meta_description = "";
+    var article_url = "";
+
+    if(title == ""){ article_title = inittitle }else{ article_title = title }
+    if(value == ""){ article_value = initialcontent }else{ article_value = value }
+    if(articlefilter == ""){ article_filter = initfilter }else{ article_filter = articlefilter }
+    if(image == ""){ article_image = initimage }else{ article_image = image }
+    if(meta_title == ""){ article_meta_title = initmetatitle }else{ article_meta_title = meta_title }
+    if(meta_description == ""){ article_meta_description = initmetadescription }else{ article_meta_description = meta_description }
+    if(url == ""){ article_url = initurl }else{ article_url = url }
+    
+
+    if(window.confirm("voulez vous enregistrer les modifications de l'article ?")){
 
     axios.put('https://server-test-3emq.onrender.com/api/updatearticlefull', {
+
+  id: id,
+  article_name: article_title,
+  content: article_value,
+  filters: article_filter,
+  image: article_image,
+  meta_title: article_meta_title,
+  meta_description: article_meta_description,
+  url: article_url,
   
-  article_name: title,
-  content: value,
-  article: inittitle,
-  image: image,
-  filters: articlefilter,
+  
   
   
 })
@@ -232,9 +271,10 @@ function Create_Blog(props) {
   console.log(error);
 });
 
+window.location.reload();
+} 
 
-}
-    
+
 
   }
 
@@ -256,28 +296,12 @@ function Create_Blog(props) {
                               
                              </div>
 
+  
                              <div class="column_items_center">
 
                              <div class="update_row">
-                             <input type="text" class="textarea" id="input" placeholder = "mots clés pour l'url" onChange={(e) => setUrl(e.target.value)} defaultValue={initurl}   ></input>
-                             <button class="bouton_blog" onClick={() => updateurl()}>Update url</button>
-                             </div>
-
-                              <div class="update_row">
-                             <input type="text" class="textarea" id="input" placeholder = "lien de l'image" onChange={(e) => setImage(e.target.value)} defaultValue={initimage}   ></input>
-                             <button class="bouton_blog" onClick={() => updateimage()}>Update image</button>
-                             </div>
-<br/><br/>
-                             <div class="update_row">
-                             <input type="text" class="textarea" id="input" placeholder = "Meta title" onChange={(e) => setMetatitle(e.target.value)} defaultValue={initmetatitle}   ></input>
-                             
-                             <button class="bouton_blog" onClick={() => updatemeta()}>Update meta</button>
-                             </div>
-                             <br/>
-                             <input type="text" class="textarea" id="input" placeholder = "Meta description" onChange={(e) => setMetadescription(e.target.value)} defaultValue={initmetadescription}   ></input>
-      <br/><br/>
       
-      <div class="update_row">
+      <content>filtre : </content>
       <select class="filtres" defaultValue={initfilter}  class="research" onChange={e => setArticleFilter(e.target.value)}>
 
                     <option></option>
@@ -287,15 +311,44 @@ function Create_Blog(props) {
 
                     </select>
 
-                    <button class="bouton_blog" onClick={() => updatefiltre()}>Update filtre</button>
+                    
 </div>
+
+                             <div class="update_row">
+                               <content>Mots clés Url : </content><br/>
+                             <input type="text" class="textarea" id="input" placeholder = "mots clés pour l'url" onChange={(e) => setUrl(e.target.value)} defaultValue={initurl}   ></input>
+                             
+                             </div>
+
+                              <div class="update_row">
+                              <content>image de l'article : </content>
+                             <input type="text" class="textarea" id="input" placeholder = "lien de l'image" onChange={(e) => setImage(e.target.value)} defaultValue={initimage}   ></input>
+                             
+                             </div>
+<br/><br/>
+                             <div class="update_row">
+                             <content>Meta title : </content>
+                             <input type="text" class="textarea" id="input" placeholder = "Meta title" onChange={(e) => setMetatitle(e.target.value)} defaultValue={initmetatitle}   ></input>
+                             
+                             
+                             </div>
+                             <br/><br/>
+                             <div class="update_row">
+                             <content>Meta description : </content>
+                             <input type="text" class="textarea" id="input" placeholder = "Meta description" onChange={(e) => setMetadescription(e.target.value)} defaultValue={initmetadescription}   ></input>
+      <br/><br/><br/><br/>
+                             </div>
+                             
+      
+      
                     <br/><br/>             
                     
         
 
 <div class="update_row">
+  <content>titre :</content>
   <input type="input" class="textarea" id="input" placeholder = "Titre de l'article" onChange={(e) => setTitle(e.target.value)} defaultValue={inittitle}></input>  
-  <button class="bouton_blog" onClick={() => updatetitle()}>update titre</button>
+  
 </div>
 
 <br/><br/><br/>
@@ -356,8 +409,7 @@ function Create_Blog(props) {
 
 <div class="column_items_center block">
   <div class="update_row">
-<button class="bouton_blog" onClick={() => updatearticle()}>Update article</button>
-<button class="bouton_blog" onClick={() => updatecontent()}>Update contenu</button>
+<button class="bouton_blog" onClick={() => updatearticle()}>Sauvegarder</button>
 </div>
                     
 

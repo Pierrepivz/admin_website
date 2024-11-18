@@ -7,7 +7,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@tinymce/tinymce-react": "^5.1.1",
-    "axios": "^1.7.4",
+    "axios": "^1.7.7",
     "devDependencies": "@babel/plugin-proposal-private-property-in-object",
     "draft-js": "^0.11.7",
     "emailjs": "^4.0.3",

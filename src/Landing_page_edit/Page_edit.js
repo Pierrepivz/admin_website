@@ -13,7 +13,7 @@ export default function Page_edit(props){
     
 
 
-    const [title, setTitle] = useState('');
+    
     const [value,setValue] = useState('');
     const editorRef = useRef();
  const initialcontent = "";
@@ -30,8 +30,8 @@ useEffect(() => {
     return (
       <div className="Page_edit block">
 
-          <h1>Édition de nouvelles pages</h1>
-          <input type="text" class="textarea" placeholder = "Titre principal" onChange={(e) => setTitle(e.target.value)}   ></input>
+          
+          
           <br/><br/>
         <div class="editor">
 
@@ -41,7 +41,7 @@ useEffect(() => {
   <Editor
   init={{
     apiKey: 'puk7gawlgq9hjqtznhwcaed6kxviwu5lg09o2v0vbofxarpo',
-    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+    plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage advtemplate ai mentions tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss emoticons template paste textcolor colorpicker textpattern imagetools',
     toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
      service_message: false,
      height: "700px",
@@ -63,7 +63,7 @@ useEffect(() => {
 
         <div class="editor_display">
 
-<h1>{title}</h1>
+
 
         <content dangerouslySetInnerHTML={{__html: value}}></content>
         

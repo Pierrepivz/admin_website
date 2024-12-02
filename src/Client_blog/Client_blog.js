@@ -10,14 +10,11 @@ function Home_Blog() {
 
     
   
-    const [article_name,setArticlename] = useState('');
+    
     const [filter,setFilter] = useState('');
     const [input,setInput] = useState('');
     const [Listset, setDatalist] = useState([]);
-    const [description,setDescription] = useState('');
-    const [title,setTitle] = useState('');
-    const [articlefilter,setArticleFilter] = useState('');
-    const [image,setImage] = useState('');
+    
 
     
 
@@ -31,82 +28,11 @@ function Home_Blog() {
     
     }, []); 
   
-  var verif = (Listset.map(value => value.id));
-  var last = verif.length - 1;
-  var id = verif[last] + 1;
   
 
-  const submit = () => {
-
-    if(window.confirm("voulez vous vraiment ajouter cet article ?")){
   
-  
-  axios.post('https://server-test-3emq.onrender.com/api/insert', {
-    id: id,
-    article_name: title,
-    description: description,
-    filter: articlefilter,
-    image: image
-
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-
-  window.location.reload();
-}
-  
-}
-
-const updatefunction = (aname) => {
-
-setArticlename(aname);
-
-}
-const editfunction = (id) => {
- 
-  axios.put('https://server-test-3emq.onrender.com/api/update', {
-    id: id,
-    article_name: title,
-    description: description,
-    filter: articlefilter,
-    image: image
-
-});
-  
-  
-  }
 
 
-const update = (article_name) => {
-            
-  axios.put('https://server-test-3emq.onrender.com/api/update', {
-
-article_name: article_name,
-description: "nouvelle desc",
-
-})
-.then(function (response) {
-console.log(response);
-})
-.catch(function (error) {
-console.log(error);
-});
-
-
-  }
-  const deletefunction = (article_name) => {
-
-    if(window.confirm("voulez vous vraiment supprimer cet article ? tout son contenu sera également supprimé")){
-    axios.delete(`https://server-test-3emq.onrender.com/api/delete/${article_name}`);
-    axios.delete(`https://server-test-3emq.onrender.com/api/deletecontent/${article_name}`);
-    window.location.reload();}
-    
-
-  }
   
     
     
@@ -140,27 +66,8 @@ console.log(error);
 
      const filtereditems = getfiltereditems(input,Listset,filter);
 
-     const getlastitems = (elements) => {
-          
-          const newarticles = [];
      
-          /*return elements.filter( card => card.id.includes(1)  );*/
-          const article1 = elements.filter( card => card.id ==  verif[last] );
-          const article2 = elements.filter( card => card.id ==  verif[last-1] );
-          const article3 = elements.filter( card => card.id ==  verif[last-2] );
 
-      newarticles.push(article1,article2,article3);
-
-      return newarticles;
-
-
-      }
-
-    const lastitems = getlastitems(Listset);
-
-  
-
-     
 
   
 
@@ -243,7 +150,7 @@ console.log(error);
     <div class="column_start">
         
         
-        <Link to={`/blog?id=${value.id}&${value.url}`}>
+        <Link to={`/blog/${value.article_name}&${value.url}`} >
         
         
         

@@ -24,7 +24,7 @@ function App() {
 
       <Route exact path = '/' element={<Login />} />
 
-      <Route exact path = '/landing_page' element={<Page_edit />} />
+      <Route exact path = '/landing_page' element={<><Nav /><Page_edit /></>} />
 
 
       <Route exact path = '/admin_rdv' element={<><Nav /><Admin_rdv /></>} />
@@ -35,7 +35,7 @@ function App() {
 
       <Route path = '/create_blog' element={<><Nav /><Create_Blog /></>} />
 
-      <Route path = '/blog' element={<><Nav /><Blog /></>} />
+      <Route path = '/blog/*' element={<><Nav /><Blog /></>} />
 
 
       

@@ -815,6 +815,9 @@ margin-right: 20px;
   
   
   width: 300px;
+  max-width: 300px;
+  max-height: 200px;
+  background-image: cover;
   margin-right: 20px;
   margin-top: 20px;
   margin-bottom: 7px;

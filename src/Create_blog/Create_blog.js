@@ -4,16 +4,11 @@
   import ReactDOM from 'react-dom';
   import axios from "axios";
   import "../Admin_blog/Admin_blog.css";
+  import Form from "../Admin_blog/Form.js";
 
 
 function Create_Blog(props) {
 
-
-  
-  
-
-   
-  
   const queryParameters = new URLSearchParams(window.location.search);
   const id = queryParameters.get("id");
   const [Article,setArticle] = useState([]);
@@ -22,8 +17,9 @@ function Create_Blog(props) {
   const [meta_description,setMetadescription] = useState("");
   const [value,setValue] = useState("");
   const editorRef = useRef();
+  const ref = useRef();
   const [articlefilter,setArticleFilter] = useState("");
-  const [image,setImage] = useState("");
+  const [alt,setAlt] = useState("");
   const [title,setTitle] = useState("");
   const [url,setUrl] = useState("");
   
@@ -61,172 +57,10 @@ function Create_Blog(props) {
     const initmetatitle = Article.map(value => value.meta_title);
     const initmetadescription = Article.map(value => value.meta_description);
     const initurl = Article.map(value => value.url);
+    const initalt = Article.map(value => value.alt);
+
     
-    
   
-  
-  
-  
- 
-
- 
-
-
- function updateurl(){
-
-   if(window.confirm("voulez vous enregistrer les modifications de l'url ?")){
-    axios.put('https://server-test-3emq.onrender.com/api/updatearticleurl', {
-  
-  id: id,
-  url: url
-
-  
-
-  
-  
-  
-})
-.then(function (response) {
-  console.log(response);
-})
-.catch(function (error) {
-  console.log(error);
-});
-
-   }
- }
- 
-
- 
-    
- function updatemeta(){
-
-  if(window.confirm("voulez vous enregistrer les modifications du meta ?")){
-
-    axios.put('https://server-test-3emq.onrender.com/api/updatemeta', {
-  
-  
-  article: inittitle,
-  meta_title: meta_title,
-  meta_description: meta_description,
-  
-  
-})
-.then(function (response) {
-  console.log(response);
-})
-.catch(function (error) {
-  console.log(error);
-});
-
-
-}
-} 
- 
-
- 
-  function updateimage(){
-
-    if(window.confirm("voulez vous enregistrer les modifications de l'image ?")){
-
-      axios.put('https://server-test-3emq.onrender.com/api/updatearticleimage', {
-    
-    
-    article: inittitle,
-    image: image,
-    
-    
-    
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-  
-  
-  }
-  }
-
-  function updatetitle(){
-
-    if(window.confirm("voulez vous enregistrer les modifications du titre ?")){
-
-      axios.put('https://server-test-3emq.onrender.com/api/updatearticletitle', {
-    
-    
-    article: inittitle,
-    article_name: title,
-    
-    
-    
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-  
-  
-  }
-  }
-
-  function updatefiltre(){
-
-    if(window.confirm("voulez vous enregistrer les modifications du filtre ?")){
-
-      axios.put('https://server-test-3emq.onrender.com/api/updatearticlefilter', {
-    
-    
-    article: inittitle,
-    filters: articlefilter,
-    
-    
-    
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-  
-  
-  }
-  }
-
-
-  function updatecontent(){
-
-
-    if(window.confirm("voulez vous enregistrer les modifications du contenu ?")){
-
-    axios.put('https://server-test-3emq.onrender.com/api/updatearticlecontent', {
-  
-  
-  content: value,
-  article: inittitle,
-  
-  
-})
-.then(function (response) {
-  console.log(response);
-})
-.catch(function (error) {
-  console.log(error);
-});
-
-
-}
-    
-
-  }
-
-
-  
-
 
   function updatearticle(){
 
@@ -237,11 +71,14 @@ function Create_Blog(props) {
     var article_meta_title = "";
     var article_meta_description = "";
     var article_url = "";
+    var article_alt = "";
+    const articleimage = ref.current.getimage();
 
     if(title == ""){ article_title = inittitle }else{ article_title = title }
     if(value == ""){ article_value = initialcontent }else{ article_value = value }
     if(articlefilter == ""){ article_filter = initfilter }else{ article_filter = articlefilter }
-    if(image == ""){ article_image = initimage }else{ article_image = image }
+    if(ref.current.getcheck() == false){ article_image = initimage }else{ article_image = articleimage; }
+    if(alt == ""){ article_alt = initalt }else{ article_alt = alt }
     if(meta_title == ""){ article_meta_title = initmetatitle }else{ article_meta_title = meta_title }
     if(meta_description == ""){ article_meta_description = initmetadescription }else{ article_meta_description = meta_description }
     if(url == ""){ article_url = initurl }else{ article_url = url }
@@ -259,6 +96,7 @@ function Create_Blog(props) {
   meta_title: article_meta_title,
   meta_description: article_meta_description,
   url: article_url,
+  alt: article_alt
   
   
   
@@ -271,7 +109,7 @@ function Create_Blog(props) {
   console.log(error);
 });
 
-window.location.reload();
+
 } 
 
 
@@ -319,13 +157,19 @@ window.location.reload();
                              <input type="text" class="textarea" id="input" placeholder = "mots clés pour l'url" onChange={(e) => setUrl(e.target.value)} defaultValue={initurl}   ></input>
                              
                              </div>
-
-                              <div class="update_row">
-                              <content>image de l'article : </content>
-                             <input type="text" class="textarea" id="input" placeholder = "lien de l'image" onChange={(e) => setImage(e.target.value)} defaultValue={initimage}   ></input>
+                             <br/><br/>
+                              
+                             <div class="update_row">
+                             <content>Image : </content>
+                              <Form ref={ref}/>
+                              </div>
+<br/><br/>
+<div class="update_row">
+                             <content>Alt image : </content>
+                             <input type="text" class="textarea" id="input" placeholder = "alt image" onChange={(e) => setAlt(e.target.value)} defaultValue={initalt}   ></input>
+                             
                              
                              </div>
-<br/><br/>
                              <div class="update_row">
                              <content>Meta title : </content>
                              <input type="text" class="textarea" id="input" placeholder = "Meta title" onChange={(e) => setMetatitle(e.target.value)} defaultValue={initmetatitle}   ></input>

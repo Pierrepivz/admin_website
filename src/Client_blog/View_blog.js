@@ -3,19 +3,23 @@ import React from "react";
 import axios from "axios";
 
 
-const Blog = (props) => {
+const Blog = () => {
 
+
+  const URLtest = window.location.href;
+    var article_name = URLtest.split("/blog/")[1].split("&")[0];
+   
   
    
-  const [title,setTitle] = useState('');
-  const queryParameters = new URLSearchParams(window.location.search);
-  const id = queryParameters.get("id");
+  
+  
+  
   const [Article,setArticle] = useState([]);
   
   
   useEffect (() => {
 
-    axios.get(`https://server-test-3emq.onrender.com/api/getblogs/${id}`)
+    axios.get(`https://server-test-3emq.onrender.com/api/getblogsbyname/${article_name}`)
     .then((response) =>  { 
       
       setArticle(response.data);}
@@ -54,6 +58,8 @@ const Blog = (props) => {
 
     
     <div class="article_content">
+
+  
 
     {Article.map(value => 
 

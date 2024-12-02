@@ -11,6 +11,9 @@
  * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
+ .Page_edit{
+   margin-top: 10vh;
+ }
 .editor{
     display: flex;
     justify-content: center;
@@ -18,11 +21,7 @@
 }
 
 .editor_display{
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-bottom: 10%;
-    width: 80%;
-    margin-top: 50px;
+    font-family: "montserrat";
     
 }
 .editor_display h1{

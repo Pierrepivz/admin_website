@@ -1,20 +1,22 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import React from "react";
 import axios from 'axios';
 import "./Admin_blog.css";
+import Form from "./Form.js";
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 
 
 function Admin_blog() {
-    
-    
+
+    const ref = useRef();
     const [article_name,setArticlename] = useState('');
     const [filter,setFilter] = useState('');
     const [input,setInput] = useState('');
     const [Listset, setDatalist] = useState([]);
     const [description,setDescription] = useState('');
     const [title,setTitle] = useState('');
+    const [alt,setAlt] = useState('');
     const [articlefilter,setArticleFilter] = useState('');
     const [image,setImage] = useState('');
     
@@ -33,20 +35,22 @@ function Admin_blog() {
 
    
   
-  var verif = (Listset.map(value => value.id));
-  var last = verif.length - 1;
+  
   
   
 
-  const submit = () => {
+  const submit = async () => {
 
     if(window.confirm("voulez vous vraiment ajouter cet article ?")){
+
+      const imagetest = ref.current.getimage();
   
   
   axios.post('https://server-test-3emq.onrender.com/api/insertblog', {
     
     article_name: title,
-    image: image
+    image: imagetest,
+    alt: alt
 
   })
   .then(function (response) {
@@ -56,10 +60,12 @@ function Admin_blog() {
     console.log(error);
   });
 
-  window.location.reload();
+  
 }
   
 }
+
+
 
 
 
@@ -82,7 +88,7 @@ function Admin_blog() {
         console.log(error);
       });
       
-      window.location.reload();
+      
     }
 
   }
@@ -140,17 +146,26 @@ function Admin_blog() {
     <content class="note"> Création, suppression et édition des articles </content>
     
                               <div class="column_items_center">
+<content>Image :</content><br/>
+<Form  ref={ref}/><br/>
 
+<content>Alt image :</content><br/>
+                              <input type="text" class="textarea" class="research"  placeholder = "Alt image" onChange={(e) => setAlt(e.target.value)} ></input>
+      
+      <br/><br/>
 
-                                
-
+    
+                               
+<content>Titre de l'article :</content><br/>
                               <input type="text" class="textarea" class="research"  placeholder = "Titre de l'article" onChange={(e) => setTitle(e.target.value)} ></input>
       
       <br/><br/>
-      <input type="text" class="textarea" class="research"  placeholder = "lien de l'image" onChange={(e) => setImage(e.target.value)} ></input>
-      <br/><br/>
+
+
       
-                    <br/><br/>
+      
+      
+                    
   
         <button class="bouton_blog" onClick={submit}>Ajouter un article</button>
         <br/><br/><br/><br/>
@@ -201,12 +216,12 @@ function Admin_blog() {
     <div class="column_start">
         
         <content1>{value.article_name}</content1>
-        <div class="home_article column_start"> <div class="article_photo" ><img src={value.image}></img></div> 
+        <div class="home_article column_start"> <div class="article_photo" ><img src={value.image} alt={value.alt}></img></div> 
         
 <div class="column">
     <button class="bouton_blog" onClick={(e) => deletefunction(value.id)}>Delete</button>
   <Link to={`/Create_blog?id=${value.id}`}>     
-
+  
         <button class="bouton_blog" >edit</button>
         </Link> 
         </div>

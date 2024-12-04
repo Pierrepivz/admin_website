@@ -17,6 +17,8 @@ function Admin_blog() {
     const [description,setDescription] = useState('');
     const [title,setTitle] = useState('');
     const [alt,setAlt] = useState('');
+    const [alt_titre,setAlttitre] = useState('');
+    const [alt_description,setAltdescription] = useState('');
     const [articlefilter,setArticleFilter] = useState('');
     const [image,setImage] = useState('');
     
@@ -50,7 +52,9 @@ function Admin_blog() {
     
     article_name: title,
     image: imagetest,
-    alt: alt
+    alt: alt,
+    alt_description: alt_description,
+    alt_titre: alt_titre
 
   })
   .then(function (response) {
@@ -151,6 +155,17 @@ function Admin_blog() {
 
 <content>Alt image :</content><br/>
                               <input type="text" class="textarea" class="research"  placeholder = "Alt image" onChange={(e) => setAlt(e.target.value)} ></input>
+      
+      <br/><br/>
+
+      <content>balise description image :</content><br/>
+                              <input type="text" class="textarea" class="research"  placeholder = "description image" onChange={(e) => setAltdescription(e.target.value)} ></input>
+      
+      <br/><br/>
+
+
+      <content>balise titre image :</content><br/>
+                              <input type="text" class="textarea" class="research"  placeholder = "titre image" onChange={(e) => setAlttitre(e.target.value)} ></input>
       
       <br/><br/>
 

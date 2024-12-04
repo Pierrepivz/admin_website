@@ -12,6 +12,7 @@ import Nav from "./Nav/Nav.js";
 import Create_Blog from "./Create_blog/Create_blog.js";
 import Blog from "./Client_blog/View_blog.js";
 import Page_edit from "./Landing_page_edit/Page_edit.js";
+import View_LP from "./Landing_page_edit/View_LP.js";
 
 function App() {
   return (
@@ -25,6 +26,8 @@ function App() {
       <Route exact path = '/' element={<Login />} />
 
       <Route exact path = '/landing_page' element={<><Nav /><Page_edit /></>} />
+
+      <Route exact path = '/landing_page/*' element={<><Nav /><View_LP /></>} />
 
 
       <Route exact path = '/admin_rdv' element={<><Nav /><Admin_rdv /></>} />

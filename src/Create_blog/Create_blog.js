@@ -20,6 +20,8 @@ function Create_Blog(props) {
   const ref = useRef();
   const [articlefilter,setArticleFilter] = useState("");
   const [alt,setAlt] = useState("");
+  const [alt_description,setAltdescription] = useState("");
+  const [alt_titre,setAlttitre] = useState("");
   const [title,setTitle] = useState("");
   const [url,setUrl] = useState("");
   
@@ -58,7 +60,8 @@ function Create_Blog(props) {
     const initmetadescription = Article.map(value => value.meta_description);
     const initurl = Article.map(value => value.url);
     const initalt = Article.map(value => value.alt);
-
+    const initaltdescription = Article.map(value => value.alt_description);
+    const initalttitre = Article.map(value => value.alt_titre);
     
   
 
@@ -72,6 +75,8 @@ function Create_Blog(props) {
     var article_meta_description = "";
     var article_url = "";
     var article_alt = "";
+    var article_alt_description = "";
+    var article_alt_titre = "";
     const articleimage = ref.current.getimage();
 
     if(title == ""){ article_title = inittitle }else{ article_title = title }
@@ -79,6 +84,8 @@ function Create_Blog(props) {
     if(articlefilter == ""){ article_filter = initfilter }else{ article_filter = articlefilter }
     if(ref.current.getcheck() == false){ article_image = initimage }else{ article_image = articleimage; }
     if(alt == ""){ article_alt = initalt }else{ article_alt = alt }
+    if(alt_titre == ""){ article_alt_titre = initalt }else{ article_alt_titre = alt_titre }
+    if(alt_description == ""){ article_alt_description = initaltdescription }else{ article_alt_description = alt_description }
     if(meta_title == ""){ article_meta_title = initmetatitle }else{ article_meta_title = meta_title }
     if(meta_description == ""){ article_meta_description = initmetadescription }else{ article_meta_description = meta_description }
     if(url == ""){ article_url = initurl }else{ article_url = url }
@@ -96,7 +103,9 @@ function Create_Blog(props) {
   meta_title: article_meta_title,
   meta_description: article_meta_description,
   url: article_url,
-  alt: article_alt
+  alt: article_alt,
+  alt_description: article_alt_description,
+  alt_titre: article_alt_titre
   
   
   
@@ -170,6 +179,22 @@ function Create_Blog(props) {
                              
                              
                              </div>
+
+                             <div class="update_row">
+                             <content>description image  : </content>
+                             <input type="text" class="textarea" id="input" placeholder = "description image" onChange={(e) => setAltdescription(e.target.value)} defaultValue={initaltdescription}   ></input>
+                             
+                             
+                             </div>
+
+                             <div class="update_row">
+                             <content>titre image   : </content>
+                             <input type="text" class="textarea" id="input" placeholder = "titre image" onChange={(e) => setAlttitre(e.target.value)} defaultValue={initalttitre}   ></input>
+                             
+                             
+                             </div>
+
+
                              <div class="update_row">
                              <content>Meta title : </content>
                              <input type="text" class="textarea" id="input" placeholder = "Meta title" onChange={(e) => setMetatitle(e.target.value)} defaultValue={initmetatitle}   ></input>

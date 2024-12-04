@@ -284,9 +284,9 @@ function editfunction(value){
           {datalist.map(value => 
     <div class="column_start">
 
-        
+<Link to={`/landing_page/${value.lp_name}/${value.url}`}> 
         <content1>{value.lp_name}</content1><br/>
-        
+        </Link>
         
           
         

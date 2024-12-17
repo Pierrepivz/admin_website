@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import React from "react";
 import axios from "axios";
 import "./Landing_page.css";
+import Landing_page from "./Landing_page.js";
 
 
 const View_LP = () => {
 
-
+/*
   const URLtest = window.location.href;
     var lp_name = URLtest.split("/landing_page/")[1].split("/")[0];
    
@@ -27,9 +28,25 @@ const View_LP = () => {
     );
       
     
-    }, []); 
+    }, []); */
     
-  
+  /* {LP.map(value => 
+
+<div class="column_start">
+
+
+
+<div class="column_start">
+<content dangerouslySetInnerHTML={{__html: value.content}}></content>
+
+
+
+</div>
+
+
+    </div>
+    
+)}*/
   
   
 
@@ -51,25 +68,9 @@ const View_LP = () => {
     
     <div class="editor_display">
 
-  
+     <Landing_page />
 
-    {LP.map(value => 
-
-<div class="column_start">
-
-
-
-<div class="column_start">
-<content dangerouslySetInnerHTML={{__html: value.content}}></content>
-
-
-
-</div>
-
-
-    </div>
-    
-)}
+   
     
     
 

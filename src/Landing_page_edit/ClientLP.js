@@ -109,7 +109,7 @@ const id = urlParams.get('id');
 <div class="editor_display block" >
             <div class="lp_block_1">
               
-              <img src={block_1.image} />
+              <img src={block_1.image} alt={block_1.alt} description={block_1.desc} />
 
                
 
@@ -168,7 +168,7 @@ const id = urlParams.get('id');
                 
                 </div>
 
-                <img src={block_3.image}/>
+                <img src={block_3.image} alt={block_3.alt_image1} description={block_3.desc_image1}/>
 
                 
 
@@ -195,7 +195,7 @@ const id = urlParams.get('id');
                 
                 </div>
 
-                <img src={block_3.image_2}/>
+                <img src={block_3.image_2} alt={block_3.alt_image2} description={block_3.desc_image2}/>
 
                 
 

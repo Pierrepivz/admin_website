@@ -33,9 +33,9 @@ function App() {
 
       
 
-      <Route exact path = '/create_lp' element={<><Nav /><CreateLP /></>} />
+      <Route exact path = '/create_lp' element={<><CreateLP /></>} />
 
-      <Route path = '/LP' element={<><Nav/><ClientLP /></>} />
+      <Route path = '/LP' element={<><ClientLP /></>} />
 
       <Route path = '/edit_lp' element={<><Nav/><EditLP /></>} />
 

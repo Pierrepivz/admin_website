@@ -150,7 +150,7 @@ function Home_Blog() {
     <div class="column_start">
         
         
-        <Link to={`/blog/${value.article_name}&${value.url}`} >
+        <Link to={`/blog/${value.url}`} >
         
         
         

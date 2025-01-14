@@ -13,6 +13,10 @@ import Create_Blog from "./Create_blog/Create_blog.js";
 import Blog from "./Client_blog/View_blog.js";
 import Page_edit from "./Landing_page_edit/Page_edit.js";
 import View_LP from "./Landing_page_edit/View_LP.js";
+import CreateLP from "./Landing_page_edit/CreateLP.js";
+import MenuLP from "./Landing_page_edit/MenuLP.js";
+import ClientLP from "./Landing_page_edit/ClientLP.js";
+import EditLP from "./Landing_page_edit/EditLP.js";
 
 function App() {
   return (
@@ -25,9 +29,17 @@ function App() {
 
       <Route exact path = '/' element={<Login />} />
 
-      <Route exact path = '/landing_page' element={<><Nav /><Page_edit /></>} />
+      <Route exact path = '/landing_page' element={<><Nav /><MenuLP /></>} />
 
-      <Route exact path = '/landing_page/*' element={<><Nav /><View_LP /></>} />
+      
+
+      <Route exact path = '/create_lp' element={<><Nav /><CreateLP /></>} />
+
+      <Route path = '/LP' element={<><Nav/><ClientLP /></>} />
+
+      <Route path = '/edit_lp' element={<><Nav/><EditLP /></>} />
+
+
 
 
       <Route exact path = '/admin_rdv' element={<><Nav /><Admin_rdv /></>} />

@@ -5,10 +5,10 @@ import axios from "axios";
 
 const Blog = () => {
 
-
+  
   const URLtest = window.location.href;
-    var article_name = URLtest.split("/blog/")[1].split("&")[0];
-   
+  var url = URLtest.split("/blog/")[1];
+  
   
    
   
@@ -19,10 +19,12 @@ const Blog = () => {
   
   useEffect (() => {
 
-    axios.get(`https://server-test-3emq.onrender.com/api/getblogsbyname/${article_name}`)
+    axios.get(`https://server-test-3emq.onrender.com/api/getblogsbyurl/${url}`)
     .then((response) =>  { 
       
-      setArticle(response.data);}
+
+      setArticle(response.data);
+    }
     );
       
     

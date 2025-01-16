@@ -19,7 +19,6 @@ const Landing_page = forwardRef((props,ref) => {
       
 
       setBlock1(data_b1);
-
       setTitle_h1(data_b1.title);
       setTitle_p(data_b1.paragraph);
       setAlt1(data_b1.alt);
@@ -121,7 +120,7 @@ const Landing_page = forwardRef((props,ref) => {
     const [imagesection,setImagesection] = useState("");
     const[imagesection2,setImagesection2] = useState("");
 
-   const [block_3,setBlock3] = useState({title: b3title, subtitle: b3subtitle, paragraph: b3paragraph, image: imagesection, alt_image1: alt2, desc_image1: desc2, title_2: b3title_2, subtitle_2: b3subtitle_2, paragraph_2: b3paragraph_2, image_2: imagesection2, alt_image2: alt3, desc_image2: desc3 });
+   const [block_3,setBlock3] = useState({ title: b3title, subtitle: b3subtitle, paragraph: b3paragraph, image: imagesection, alt_image1: alt2, desc_image1: desc2, title_2: b3title_2, subtitle_2: b3subtitle_2, paragraph_2: b3paragraph_2, image_2: imagesection2, alt_image2: alt3, desc_image2: desc3 });
 
 
     /* */
@@ -170,17 +169,31 @@ var state = document.querySelector("#block_2_content");
     }
 
     /*display b3 section 2*/
-    
-    var display = document.querySelector("#display");
 
-    if(b3title_2==""){
+
+    
+    var block_3_section2 = document.querySelector("#block_3_section2");
+    var block_3_full = document.querySelector("#block_3");
+
+    if(b3title==""){
       
-      display.classList.add("none");
+      block_3_full.classList.add("none");
 
     }else{
 
-      if(display.classList.contains("none")){
-        display.classList.remove("none");
+      if(block_3_full.classList.contains("none")){
+        block_3_full.classList.remove("none");
+      }
+    }
+
+    if(b3title_2==""){
+      
+      block_3_section2.classList.add("none");
+
+    }else{
+
+      if(block_3_section2.classList.contains("none")){
+        block_3_section2.classList.remove("none");
       }
     }
 
@@ -528,7 +541,7 @@ function updateLPglobals(){
 
             </div>
 
-            <div class="lp_block_3">
+            <div class="lp_block_3" id="block_3">
                 
                  
             
@@ -558,7 +571,7 @@ function updateLPglobals(){
             </div>
 
 
-            <div class="lp_section" id="display">
+            <div class="lp_section" id="block_3_section2">
                 
                 
             

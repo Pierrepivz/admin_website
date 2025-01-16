@@ -12,7 +12,7 @@ const CreateLP = () => {
   
 var LPref = useRef();
 
-const submit = async () => {
+const submit = async (state) => {
 
     if(window.confirm("voulez vous vraiment ajouter cette Landing page ?")){
 
@@ -25,18 +25,18 @@ const submit = async () => {
     var url = values.url;
 
     
-    /*var result = JSON.parse(atob(block_1));
-    console.log(result);*/
+    
     
   
   
-  axios.post('https://server-test-3emq.onrender.com/api/insertLP', {
+  axios.post('https://server-test-3emq.onrender.com/api/insertLPfull', {
     
     LPglobals: LPglobals,
     block_1: block_1,
     block_2: block_2,
     block_3: block_3,
     url: url,
+    state: state
   
   })
   .then(function (response) {
@@ -45,7 +45,11 @@ const submit = async () => {
   .catch(function (error) {
     console.log(error);
   });
+
+
   
+
+
   
   }
   
@@ -77,7 +81,8 @@ const submit = async () => {
 
     <Link to="../landing_page">
     <button class="edit_button" >Menu Landing Page</button></Link>
-    <button class="edit_button" onClick={(e) => submit()}>Ajout LP</button>
+    <button class="edit_button" onClick={(e) => submit(1)}>Ajout LP</button>
+    <button class="edit_button" onClick={(e) => submit(0)}>Enregistrer comme brouillon</button>
 
      <Landing_page ref = {LPref}/>
 

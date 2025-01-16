@@ -47,7 +47,7 @@ useEffect (() => {
       }
       );
 
-      const submit = async () => {
+      const submit = async (state) => {
 
         if(window.confirm("voulez vous vraiment modifier cette Landing page ?")){
 
@@ -60,14 +60,15 @@ useEffect (() => {
     var url = values.url;
 
             
-            axios.put('https://server-test-3emq.onrender.com/api/updateLP', {
+            axios.put('https://server-test-3emq.onrender.com/api/updateLPfull', {
 
   id: id,
   globals: LPglobals,
   block_1: block_1,
   block_2: block_2,
   block_3: block_3,
-  url: url
+  url: url,
+  state: state
   
   
   
@@ -113,7 +114,9 @@ useEffect (() => {
     <div class="editor_display">
       <Link to="../landing_page">
     <button class="edit_button">Retour au Menu </button></Link>
-    <button class="edit_button" onClick={(e) => submit()}>Sauvegarder les changements</button>
+    
+    <button class="edit_button" onClick={(e) => submit(1)}>Sauvegarder les changements (publique)</button>
+    <button class="edit_button" onClick={(e) => submit(0)}>Sauvegarder les changements (Brouillon)</button>
     
 
      <Landing_page ref = {LPref}/>

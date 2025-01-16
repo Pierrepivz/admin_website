@@ -10,13 +10,28 @@ import { Link } from "react-router-dom";
 const MenuLP = () => {
 
     const [datalist,setDatalist] = useState([]);
-    const [test,setTest] = useState([]);
+    const [datalist_draft,setDatalistdraft] = useState([]);
+
+    const [publique,setPublique] = useState([]);
+    const [brouillon,setBrouillon] = useState([]);
 
     useEffect (() => {
+
+
+      
     
-        axios.get('https://server-test-3emq.onrender.com/api/getLP')
+        axios.get(`https://server-test-3emq.onrender.com/api/getLPbystate/${1}`)
           .then((response) =>  { 
             setDatalist(response.data);
+            
+            
+            
+          }
+          );
+
+          axios.get(`https://server-test-3emq.onrender.com/api/getLPbystate/${0}`)
+          .then((response) =>  { 
+            setDatalistdraft(response.data);
             
             
             
@@ -37,20 +52,33 @@ const MenuLP = () => {
 
         function testfunction(){
 
-          const datablock1 = datalist.map(value => value.block_1); 
-          const tab = []; 
+          const datablock1 = datalist.map(value => value.block_1);
+          const datablock1_draft = datalist_draft.map(value => value.block_1);
+          const tab_publique = []; 
+          const tab_brouillon = [];
+
+
           var target = document.querySelector(".landing_page_list");
 
           for(var i = 0; i < datablock1.length; i++){
 
           var res = JSON.parse(atob(datablock1[i]));
           var id = datalist.map(value => value.id)[i];
-          tab.push({ id: id, data: res});
+          tab_publique.push({ id: id, data: res});
           
-
+          
           }
+          for(var i = 0; i < datablock1_draft.length; i++){
+
+            var res = JSON.parse(atob(datablock1_draft[i]));
+            var id = datalist_draft.map(value => value.id)[i];
+            tab_brouillon.push({ id: id, data: res});
+            
+            
+            }
           
-          setTest(tab);
+          setPublique(tab_publique);
+          setBrouillon(tab_brouillon);
           target.classList.remove("none");
           
             }
@@ -103,7 +131,9 @@ const MenuLP = () => {
 
       <div class="landing_page_list none" >
 
-      {test.map(value => 
+      <div class="LP_view">
+
+      {publique.map(value => 
 
         <div class="landing_page_info">
 
@@ -115,6 +145,7 @@ const MenuLP = () => {
          <h3>{value.data.title}</h3>
 
          <div>
+           
          <Link to={`../edit_lp?id=${value.id}`}>
          <button class="edit_button">edit</button></Link>
          <button class="edit_button" onClick={() => deletefunction(value.id)}>delete</button>
@@ -124,7 +155,35 @@ const MenuLP = () => {
         </div>
        
         
-        )} 
+        )} </div>
+
+        <h2>brouillons :</h2>
+
+        <div class="LP_view">
+
+        {brouillon.map(value => 
+
+<div class="landing_page_info">
+
+
+<Link to={`../LP?id=${value.id}`}>
+<img src={value.data.image} width="200" height="200"/>
+</Link>
+
+ <h3>{value.data.title}</h3>
+
+ <div>
+ <Link to={`../edit_lp?id=${value.id}`}>
+ <button class="edit_button">edit</button></Link>
+ <button class="edit_button" onClick={() => deletefunction(value.id)}>delete</button>
+ 
+ </div>
+
+</div>
+
+
+)}
+</div>
         
         </div>
 

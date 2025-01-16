@@ -1,7 +1,7 @@
 .landing_page_list{
 
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     width: 70vw;
     border-style: solid;
     border-width: 2px;
@@ -9,17 +9,25 @@
     padding: 4vw;
     margin-top: 100px;
 
-
-
-
 }
 .landing_page_info{
+
     margin-left: 3vw;
     margin-right: 3vw;
     display: flex;
     flex-direction: column;
+
 }
-.landing_page_info div *{
+
+
+  .LP_view{
+      
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+.LP_view div *{
 
     margin-right: 10px;
 

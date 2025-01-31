@@ -26,10 +26,9 @@ const submit = async (state) => {
 
     
     
-    
   
-  
-  axios.post('https://server-test-3emq.onrender.com/api/insertLPfull', {
+
+    axios.post('https://server-test-3emq.onrender.com/api/insertLPfull', {
     
     LPglobals: LPglobals,
     block_1: block_1,
@@ -38,13 +37,28 @@ const submit = async (state) => {
     url: url,
     state: state
   
-  })
+  }, { 
+    maxBodyLength: Infinity , maxContentLength: Infinity})
   .then(function (response) {
     console.log(response);
+    console.log("yo");
   })
   .catch(function (error) {
+
     console.log(error);
+
+    if(error.status === 413){
+      window.alert("contenu trop volumineux.");
+    }
+   
+
   });
+
+
+  
+  
+  
+  
 
 
   

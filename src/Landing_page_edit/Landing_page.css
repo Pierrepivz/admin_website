@@ -23,7 +23,9 @@
     flex-direction: column;
     align-items: center;
 }
-
+.none{
+  display: none;
+}
 
 
 .lp_block_1 img{

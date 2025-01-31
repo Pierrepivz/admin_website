@@ -59,6 +59,9 @@ useEffect (() => {
     var block_3 = btoa(JSON.stringify(values.block_3));
     var url = values.url;
 
+
+    console.log(block_3);
+
             
             axios.put('https://server-test-3emq.onrender.com/api/updateLPfull', {
 
@@ -74,10 +77,45 @@ useEffect (() => {
   
   
   
-})
-            .then((response) =>  { 
+},{ 
+  maxBodyLength: Infinity , maxContentLength: Infinity})
+            .then((response) =>  {
+              
+            console.log(response);
+
+              }).catch(function (error) {
+                console.log(error.status);
+                
+            
               });
 
+/*
+axios.put('https://server-test-3emq.onrender.com/api/updateLPblock1', {
+
+  id: id,
+  
+  block_1: block_1,
+  
+  
+  
+  
+  
+  
+  
+})
+            .then((response) =>  {
+              
+            console.log(response);
+
+              }).catch(function (error) {
+                console.log(error.status);
+                
+            
+              });*/
+
+              
+
+              
 
 
         }
